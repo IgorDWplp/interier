@@ -144,6 +144,15 @@ header img{
 
 
 
+
+
+.hand :hover{
+    
+    cursor: pointer;
+    
+}
+
+
 /*========responzivni menu ne-aktivni*/
 
 

@@ -1,3 +1,172 @@
+<?php 
+
+
+   	if (isset($_POST["submit"])) {
+
+   $crlf = "\r\n";
+
+    //Get Data
+
+    $name = strip_tags($_POST['name']);
+
+    $email = strip_tags($_POST['email']);
+
+    $phone = strip_tags($_POST['tel']);
+
+    $message = strip_tags($_POST['message']);
+
+    // Parse/Format/Verify Data
+
+   $from = 'sfera interijer kontakt forma'; 
+   $to = 'testMail@sfera-software.com'; 
+   $subject = 'Poruka s sfera-interior.com kontakt forma ';
+
+
+
+	 $message = ' 
+
+<html><head></head>
+    <body>
+	<br/>
+    <img src="http://sfera-software.com/sferaStranica/img/New_Logo_2.png" alt=""/>
+        <div>
+
+          <table style="width: 800px;" border="1">
+ <tr>
+<th colspan="2"><h3>Kontakt obrazac s sfera-interior.com kontakt forme</h3></th>
+</tr>
+
+  <tr> <td colspan="2"><p><strong>Subjekt : Kontat forma interijeri</strong></p> </td> </tr>
+
+              
+ <tr>
+<td>Ime :</td>
+ <td> <p>'.$name.'</p></td>
+ </tr>
+
+ <tr>
+<td>tel :</td>
+<td> <p>'.$phone.'</p></td>
+ </tr>
+
+<tr>
+<td>E-mail :</td>
+<td>  <p>'.$email.'</p></td>
+</tr>
+
+              
+
+ <tr>
+<tr><td colspan="2" style="background-color:#F1F1F1; ">
+<table>
+<tr><td>
+ <p>'.$message.'</p>
+</td></tr>
+</table> 
+</td>
+</tr>
+
+                     
+
+</table>
+</div>
+</body>
+</html>
+
+';
+
+	
+$headers = 'From: ' . $from  . $crlf .
+'Reply-To: ' . $from  . $crlf .
+'Content-Type: text/html; charset=UTF-8';
+
+	
+
+   
+
+ 
+   
+
+    if (!$_POST['name']) 
+
+   {
+
+   $errName = 'Molimo unesite svoje ime';
+   $warning ='Obrazac nije potvrđen, provjerite polja>';
+
+   }
+
+   
+
+     if (!$_POST['tel']) 
+
+   {
+
+    $errTel = 'Molimo unesite svoj kontakt broj';
+     $warning ='Obrazac nije potvrđen, provjerite polja';
+
+    
+
+   }
+
+   
+
+   
+
+   if (!$_POST['email'] || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) 
+
+           {
+			   $errEmail = 'Molimo unjeti valjanu, ispravnu e-mail adresu';
+
+               $warning ='Obrazac nije potvrđen, provjerite polja';
+
+   }
+
+   
+
+
+    
+
+      if (!$errName && !$errEmail && !$errMessage) {
+
+
+
+	if (  mail($to, $sub, $message, $headers)) {
+
+
+
+		$result='<div class="thankyou"><h1>Hvala što ste nas kontaktirali!</h1></div>';
+
+              
+
+                 echo "<script>alert('Hvala što ste nas kontaktirali!');</script>";
+
+
+
+	} else {
+
+
+
+		$result='<span class="errorForm"><h1>Problem s slanjem poruke, pokušajte kasnije!</h1></span>';
+
+                
+
+                
+
+
+
+	}
+
+}  }
+
+?>
+
+
+
+
+
+
+
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -6,20 +175,20 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Uređenje Prostora | Uređenje | Sfera Interior</title>
+        <title>Uređenje Prostora | Kontakt | Sfera Interior</title>
         <meta name="description" content="Preuređenje kuća, stanova i poslovnih prostora. Dizajn interijera. Uređenje po sistemu ključ u ruke.">
         <meta name="keywords" content="design interior, dizajn, uređenje interjera, uređenje prostora"/>
         
         
-        <meta property="og:title" content="Preuređenje Prostora | Uređenje | Sfera Interior"/>
+        <meta property="og:title" content="Preuređenje Prostora | Kontakt | Sfera Interior"/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.sfera-interior.com/Uredenje"/>
-<meta property="og:site_name" content="Preuređenje Prostora |  Uređenje | Sfera Interior"/>
+<meta property="og:url" content="https://www.sfera-interior.com/Kontakt"/>
+<meta property="og:site_name" content="Preuređenje Prostora |  Kontakt | Sfera Interior"/>
 <meta property="og:description" content="Preuređenje kuća, stanova i poslovnih prostora. Dizajn interijera. Uređenje po sistemu ključ u ruke. "/>
         
         
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="../pfavico.ico">
+        <link rel="apple-touch-icon" href="pfavico.ico">
 
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
@@ -29,8 +198,7 @@
      <script src="../js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
      <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
      
-     
-  
+
   
      
      
@@ -61,8 +229,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
             <ul class="nav sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#"> Sfera interior  <img src="../img/logo.png" alt="logo"/></a>
-                   
+                    <a href="../index.html"> Sfera interior <img src="../img/logo.png" alt="logo"/></a>
                 </li>
                 <li>
                     <a href="../index.html">Početna</a>
@@ -72,26 +239,25 @@
                   <ul class="dropdown-menu" role="menu">
                     <li class="dropdown-header">Dizajn kategorije</li>
                     <li> <a href="../Dizajn/index.html">Dizajn</a></li>
-                    <li><a href="../Kuce/index.html">Kuće i apartmani</a></li>
+                    <li><a href="../Kuce/index.html" >Kuće i apartmani</a></li>
                     <li><a href="../Uredi/index.html">Poslovni prostori</a></li>
                     <li><a href="..Restorani/index.html" >Restorani</a></li>
                     <li><a href="../Klubovi/index.html" >Barovi i noćni klubovi</a></li>
-                    <li><a href="../Hoteli/index.html">Hoteli</a></li>
-                     <li><a href="../Casina/index.html" >Casina</a></li>
+                     <li><a href="../Hoteli/index.html">Hoteli</a></li>
+                      <li><a href="../Casina/index.html">Casina</a></li>
                   </ul>
                 </li>
                 <li>
-                    <a href="" class="activeLi">Uređenje</a>
+                    <a href="../Uredenje/index.html">Uređenje</a>
                 </li>
                 <li>
-                    <a href="../3d.html" style="display:none">3D</a>
+                    <a href="../3d.html" style="display:none;" >3D</a>
                 </li>
                 
                    <li>
-                    <a href="../Kontakt/index.php">Kontakt</a>
+                    <a href="" class="activeLi">Kontakt</a>
                 </li>
-                
-          
+      
             
                 <li>
                     <a href="https://twitter.com/">Pratite nas</a>
@@ -138,20 +304,20 @@
   <li class="current-menu-item"><a href="../index.html">Početna</a></li>
   <li><a href="../Dizajn/index.html">Dizajn</a>
     <ul>
-   <li><a href="../Kuce/index.html">Kuće i apartmani</a></li>
-      <li><a href="../Uredi/index.html">Poslovni prostori</a></li>
-      <li><a href="../Restorani/index.html">Restorani</a></li>
+       <li><a href="../Kuce/index.html">Kuće i apartmani</a></li>
+      <li><a href="../Uredi/index.html" >Poslovni prostori</a></li>
+       <li><a href="../Restorani/index.html">Restorani</a></li>
       <li><a href="../Klubovi/index.html">Barovi i noćni klubovi</a></li>
-     <li><a href="../Hoteli/index.html">Hoteli</a></li>
-      <li><a href="../Casina/index.html" >Casina</a></li>
+       <li><a href="../Hoteli/index.html">Hoteli</a></li>
+      <li><a href="../Casina/index.html">Casina</a></li>
      
     </ul>
   </li>
   
   
-  <li><a href="#" class="activeLi">Uređenje</a></li>
-  <li><a href="../3d.html" style="display:none">3D</a> </li>
-   <li><a href="../Kontakt/index.php">Kontakt</a></li>
+  <li>  <a href="../Uredenje/index.html">Uređenje</a></li>
+  <li><a href="../3d.html" style="display:none;">3D</a> </li>
+   <li><a href="" class="activeLi">Kontakt</a></li>
 </ul>
 </nav>    
 
@@ -165,104 +331,85 @@
     <div class="container" style="overflow-x:hidden;">
 
         
-        <div class="uredjenje">
-            <h3>Uređenje</h3>
-            <br>
-            <p>Uz višegodišnje iskustvo stečeno u inozemstvu i domovini, sa našim timom i kooperantima nudimo visoku kvalitetu izvođenja svih radova vezanih za uređenje interijera.</p>
-            <br/>
-            <p>Uređenje možemo dogovoriti po sistemu „ključ u ruke“  ili djelomično.</p>
-            <br/>
-            <p>„Ključ u ruke“ podrazumijeva:</p>
-              
-           
-            <ul>
-                <li>Izradu dizajnerskog rješenja za vaš interijer</li>
-                <li>Izrada kompjuterske obrade ideje u obliku 3D vizualizacije</li>
-                <li>Izrada  izvedbenih projektata za sve predviđene radove</li>
-                <li>Izrada troškovnika sukladno projektima</li>
-                <li>Izvođenje i organizacija svih vrsta radova sukladno troškovniku </li>
-                <li>Kontrola kvalitete i rokova izvođenja</li>
-                <li>Isporuka i montaža namještaja</li>
-            </ul>
-            <br/>
-            <p><span>Najčešći razlog zašto se klijenti odlučuju na izvođenje radova po sistemu „Ključ u ruke“, je taj 
-                    što su uključeni svi radovi sukladno troškovniku i projektu, nema dodatne brige o izvođačima, kvaliteti i 
-                    rokovima. Sistem izvođenja radova „Ključ u ruke“, značajno smanjuje rok izvođenja radova i cijenu, za razliku kada se
-                    ugovovara posao sa svakim izvođačem posebno.
-           </span></p>
-         
-           
+        <div class="MapContainer">
+            <h2>Contact</h2>
+
+    
+    <iframe class="map" frameborder="0" style="border:0"
+src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJr83ACVbWZUcRhtltN2BONWY&key=AIzaSyCPgyiwUJg6xRPHE5S-_bPw6VJ1slD8TmU" allowfullscreen></iframe>
+    
         </div>
         
         
-        <div class="uredjenje_radovi">
-            <p>Izvodimo sve radove u interijeru.</p>
-            <ul>
-                <li>Grube građevinske radove</li>
-                <li>Obrtničke radove</li>
-                <li>Završne radove ( podovi i zidovi )</li>
-                <li>Sve instalaterske radove ( električarske, strojarske i vodoinstalatesrke )</li>
-            </ul>
-            <br/>
-            <p><span>Surađujemo sa renomiranim arhitektonskim uredima u Hrvatskoj i inozemstvu. Koristimo isključivo nasuvremenije materijale i rješenja, 
-                    te pružamo punu podršku našim klijentima. Kontinuirano pratimo sve nove trendove u građevinarstvu kako bi našim klijentima pružili najbolju uslugu.
-                </span></p>
-            <br/>
-            <p><span>Nudimo vam pomoć prilikom odabira materijala, preporučujemo najkvalitetnije proizvođače i distributere sukladno vašim željama i mogućnostima.</span></p>   
-            <br/>
-           <p><span>Nudimo kompletno i djelomično uređenje vašeg doma ili poslovnog prostora.</span></p>
-            <br/>
-           <p><span>Ukoliko i vi želite urediti svoj životni ili poslovni prostor, predložit ćemo vam rješenja i zajedno sa vama stvoriti jedinstveni doživljaj življenja.</span></p>
+        
+        <div class="row kontakt">
+            
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <p>Tel/Fax: +385 1 91 311 7788 <br/>
+                <span>Sfera Adria d.o.o. </span></p>
+                <br/>
+                <p>Draškovićeva 54, Zagreb
+                    <br/>
+                    <span>10 000 Croatia</span></p>
+                <img src="img/mester.gif" alt="" class="gifImg"/>
+                
+            </div>
+            
+            
+<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 forma">
+              <p>Pošaljite Vaš upit</p>
+              
+              <?php echo "$result";?>
+              <?php echo "<span class='errorForm'><h1>$warning</h1></span>";?>
+      
+              
+              
+<form  method="post" id="contactForm" role="form" action="index.php">
+                
+<input class="inputForm" type="text" id="input-4" name="name" value="<?php echo htmlspecialchars($_POST['name']); ?>" oninvalid="this.setCustomValidity('Niste unjeli Vaše ime');" placeholder=" Ime"/>
+<?php echo "<span class='errorForm'><p>$errName</p></span>";?>  
+                  
+                
+
+<input class="inputForm" type="text" id="input-5"  name="email"  value="<?php echo htmlspecialchars($_POST['email']); ?>" oninvalid="this.setCustomValidity('Molimo Vas uneste svoj e-mail')" placeholder=" E-mail"/>
+<?php echo "<span class='errorForm'><p>$errEmail</p></span>";?>
+                  
+                  
+                  
+
+
+<input class="inputForm" type="text" id="input-7" name="tel" value="<?php echo htmlspecialchars($_POST['tel']); ?>" oninvalid="this.setCustomValidity('Molimo Vas uneste svoj kontakt mobitel ili telefon')" placeholder=" Mobitel"/>
+<?php echo "<span class='errorForm'><p> $errTel</p></span>";?>
+                  
+ 
+ 
+ 
+ 
+<textarea class="inputForm" name="message" rows="10" cols="75"   role="textbox" aria-autocomplete="list" aria-haspopup="true"  placeholder="Vaša poruka"><?php echo htmlspecialchars($_POST['message']);?></textarea>
+<?php echo "<span class='errorForm'><p>$errMessage</p></div>";?>
+ 
+        
+        
+    
+        
+        
+<div style="text-align: right;" class="buttonKontakDiv">
+<button class="contact_btn" name="submit" type="submit" value="Send">Pošalji</button>
+</div>
+        
+
+ 
+</form>
+              
+              
+              
+                
+ </div>
+            
+            
             
         </div>
-        
-        
-        
-        
-        
 
-     <div id="myCarousel" class="carousel slide uredjenjeCar" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-     
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-
-      <div class="item active">
-        <img src="img/ugovaranje radova.jpg" alt="ugovaranje radova " style="width:100%;">
-        <div class="carousel-caption">
-          
-        </div>
-      </div>
-
-      <div class="item">
-        <img src="img/remont.png" alt="Remont interijera" style="width:100%;">
-        <div class="carousel-caption">
-         
-        </div>
-      </div>
-    
-   
-  
-    </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-        
-
-  
     </div>        
             
         
@@ -272,11 +419,8 @@
         
         
             
-<footer style="height: 100px;" class="uredjenjeFooter">
-           
-            <p><a href="https://www.sfera-adria.com/">© 2017 by Sfera Adria</a></p>
-            
-            
+<footer style="height: 100px;">
+<p><a href="https://www.sfera-adria.com/">© 2017 by Sfera Adria</a></p>
 </footer>
 
             
