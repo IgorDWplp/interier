@@ -238,7 +238,7 @@ header img{
 }
 
 #wrapper.toggled #sidebar-wrapper {
-    width: 220px;
+    width: 290px;
 }
 
 #page-content-wrapper {
@@ -258,7 +258,7 @@ header img{
 .sidebar-nav {
     position: absolute;
     top: 0;
-    width: 220px;
+    width: 290px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -363,6 +363,16 @@ header img{
     height: 65px;
     font-size: 20px;
     line-height: 44px;
+    
+}
+
+
+
+.sidebar-nav > .sidebar-brand a{
+    
+    margin-left: -20px;
+    color:#FFFFFF !important;
+   
 }
 
 
@@ -370,7 +380,7 @@ header img{
     height: 45px;
     z-index: 10;
     float: left;
-    margin-left: 110px;
+    margin-left: 120px;
     margin-top: -40px;
 }
 
